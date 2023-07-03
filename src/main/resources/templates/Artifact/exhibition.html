@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展览</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/exhibition.css}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<header><!--页面顶部-->
+
+    <div id="menu-bar" class="fa-solid fa-ellipsis-vertical"></div>
+
+    <a href="#" class="logo">文博追韵</a>
+    <nav class="navbar"><!-- nav是导航栏部分的标签 -->
+        <a th:href="@{/guest/artifact/index}">首页</a>
+        <a th:href="@{/guest/artifact/toshow}">馆藏文物</a>
+        <a th:href="@{/guest/news/findall}">资讯</a>
+        <a th:href="@{/guest/artifact/toexhibition}">展览</a>
+    </nav>
+    <!--    <div class="search-box">-->
+    <!--        <input  class="search-txt" type="text" name="" placeholder="Type to search">-->
+    <!--        <a href="" class="search-btn">-->
+    <!--            <i class="fa-sharp fa-solid fa-magnifying-glass" id="search-btn"></i>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <a th:href="@{/checkLogin/tologin}" class="denglu"><div class="login"></div></a>
+</header>
+<div class="title">2<br>0<br>2<br>3<br>年度博物馆展览</div>
+
+
+<div class="cards">
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-1.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                玉楮流芳：上海博物馆藏宋元古籍展
+                <small>2023-05-16 - 2023-08-13</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                古籍是中华民族历史记忆和思想智慧的重要载体，既具有精神属性，同时也具有物质属性。博大精深的中华文明、源远流长的中华文脉在古籍中得以传承和延续。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004158" class="btn" id="mylink">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-2.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                瑞色凝光：上海博物馆秘藏缂丝莲塘乳鸭图特展
+                <small>2022-12-17 - 2023-01-01</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                缂，一种通经回纬的纺织工艺，沿着古老的丝绸之路传入中原，遂有缂丝。因它织作耗时费工，堪称“寸缂寸金”，非寻常之物。受宋徽宗推崇的院体画影响，缂丝技法由唐时纹样图案主用平缂、勾缂技法，转向与绘画生趣和意境相融的多种戗缂技法方向发展，形成不同流派，南宋朱克柔为一代表。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004147" class="btn" id="mylink-2">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-3.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                玉兔精灵：上海博物馆兔年迎春展
+                <small>2023-01-18 - 2023-02-26</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                癸卯新春至，玉兔来人间。兔子灵动可爱，有繁衍不息、福寿康宁的美好寓意。它数量多、分布广，在古代是食物来源之一。《诗经》和《礼记》中曾提到捕兔网（兔罝jū）、兔酱（兔醢hǎi）、兔羹等捕食之法，还记载兔被称作“明视”，是宗庙祭品之一。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004153" class="btn" id="mylink-3">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-4.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                虎笑寅年：中日虎年迎春展
+                <small>2022-01-18 - 2022-02-27</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                中国是虎的栖息地和文化故乡,《山海经》中有关西王母“豹尾虎齿而善啸”的描绘，以及以巴族、彝族为代表的西南民族崇虎、祭虎的习俗。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004139" class="btn" id="mylink-4">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-5.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                仪象万千：明代彩色釉陶俑特展
+                <small>2021-11-30 - 2022-01-09</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                以人物仪仗俑队陪葬的风气起自先秦，战国时有陶俑木俑，最为人熟悉的是秦始皇兵马俑以及唐三彩俑。到了明代，缩小版的陪葬仪仗队较为流行，栩栩如生的仪仗俑队曾多次远赴美国、西班牙、俄罗斯展出，广受欢迎。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004137" class="btn" id="mylink-5">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-image" th:src="@{/images/zl-6.jpg}" alt="">
+        <div class="card-title">
+            <a href="" class="toggle-info btn">
+                <span class="left"></span>
+                <span class="right"></span>
+            </a>
+            <h2>
+                从波提切利到梵高：英国国家美术馆珍藏展
+                <small>2023-01-17 - 2023-05-07</small>
+            </h2>
+        </div>
+
+        <div class="card-flap flap1">
+            <div class="card-description">
+                2023年新年伊始，上海博物馆首度联手英国国家美术馆，为观众讲述四百年经典的欧洲美术史。英国国家美术馆位列全球最受欢迎的十大艺术博物馆之一。上海博物馆成为展览首站,使得中国观众无需前往伦敦，便可欣赏到欧洲艺术巨匠的绘画杰作。
+            </div>
+            <div class="card-flap flap2">
+                <div class="card-actions">
+                    <a target="_blank" href="https://www.shanghaimuseum.net/mu/frontend/pg/article/id/E00004151" class="btn" id="mylink-6">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer>
+
+    <div class="footer-container">
+        <div class="footer_left-col">
+            <h1>数字博物馆</h1>
+        </div>
+    </div>
+
+</footer>
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/exhibition.js}"></script>
+<script>
+    document.getElementById("mylink").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+    document.getElementById("mylink-2").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+    document.getElementById("mylink-3").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+    document.getElementById("mylink-4").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+    document.getElementById("mylink-5").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+    document.getElementById("mylink-6").addEventListener("click",function(event){
+        event.preventDefault();
+        window.location.href=this.href;
+    })
+</script>
+</body>
+</html>

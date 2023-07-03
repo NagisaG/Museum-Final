@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻内容</title>
+    <style>
+        h2{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .content{
+            position: absolute;
+            top: 20%;
+            width: 800px;
+            left: 50%;
+            transform: translateX(-50%);
+            word-wrap:break-word;
+            text-align: justify;text-justify:inter-ideograph;
+        }
+        h3{
+            position: absolute;
+            top: 80%;
+            left: 75%;
+        }
+        .address{
+            position: absolute;
+            width: 100px;
+            color: gray;
+            text-decoration: none;
+        }
+        .address:hover{
+            color: blue;
+        }
+        .tiao{
+            position: absolute;
+            top: 15%;
+            width: 800px;
+            height: 3px;
+            background-color: rgb(113,81,58);
+
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2 th:text="${news.title}"></h2><!--标题-->
+    <div class="tiao"></div>
+    <div class="content" th:text="${news.content}"></div><!-- 内容 -->
+    <h3 th:text="${news.address}">原文地址：<a target="_blank" href="" class="address"></a></h3>
+</div>
+</body>
+</html>

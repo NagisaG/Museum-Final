@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" /><!--img标签预加载网络图片-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 连接到css  -->
+    <link rel="stylesheet" th:href="@{/css/both.css}">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/artifact.js}"></script>
+    <title>后台管理系统</title>
+    <style>
+        body {
+            background-image:url(/images/user.png) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .messageList {
+            padding: 20px;
+
+        }
+        .controller {
+            padding-bottom: 20px;
+            margin-left: 100px;
+            display: block;
+            justify-content: flex-end;
+        }
+
+        #add {
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+            position: absolute;
+            right: 300px;
+        }
+        #delete {
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+            position: absolute;
+            right: 400px;
+        }
+        #search {
+            margin-left: 10px;
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #submit {
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+            position: absolute;
+            right: 500px;
+        }
+        #file {
+            position: absolute;
+            right: 450px;
+        }
+        .search {
+            position: absolute;
+            right: 20px;
+        }
+        .wrap {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 150px;
+        }
+        .upload {
+            position: absolute;
+            right: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- 侧边栏  -->
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>后台管理系统</header>
+    <ul>
+        <li><a href="/index"><i class="fa-solid fa-house"></i>首页</a></li>
+        <li><a href="/museum/findall"><i class="fa-solid fa-vihara"></i>博物馆信息</a></li>
+        <li><a href="/artifact/findall"><i class="fa-sharp fa-solid fa-eye"></i>文物信息</a></li>
+        <li><a href="/admin/findall"><i class="fa-sharp fa-solid fa-user-secret"></i>用户信息</a></li>
+        <li><a href="/news/findall"><i class="fa-solid fa-newspaper"></i>相关资讯</a></li>
+        <li><a href="/guest/museum/index"><i class="fa-solid fa-arrow-right"></i>游客页面</a></li>
+    </ul>
+</div>
+
+<!-- 表单 -->
+<!--<button onclick="deleteArtifacts()">批量删除</button>-->
+<!--<form id="artifactsform" action="/artifact/delete" method="post">-->
+<div class="messageList">
+    <div class="controller">
+        <button id="delete" class="btn" onclick="deleteArtifacts()">批量删除</button>
+        <a href="/artifact/toinsert"><button id="add" class="btn">添加信息</button></a>
+        <form action="/artifact/findbystr" method="post" class="search">
+            <input type="text" id="searchStr" name="searchStr" placeholder="输入关键字进行查询">
+            <input type="submit" value="查询" id="search" class="btn">
+        </form>
+        <form action="/artifact/upload" method="post" enctype="multipart/form-data" class="upload">
+            <input type="file" id="file" name="file">
+            <input type="submit" value="上传" class="btn" id="submit">
+        </form>
+    </div>
+    <form id="artifactsform" action="/artifact/delete" method="post">
+    <table class="table table-striped" style="table-layout:fixed;margin-top: 40px;">
+        <thead>
+        <tr>
+            <th class="wrap" style="width: 30px;"><input type="checkbox"></th>
+            <th class="wrap" style="width: 70px;">名称</th>
+            <th class="wrap" style="width: 70px;">时代</th>
+            <th class="wrap" style="width: 70px;">类型</th>
+            <th class="wrap" style="width: 70px;">出土地点</th>
+            <th class="wrap" style="width: 70px;">出土时间</th>
+            <th class="wrap" style="width: 70px;">现藏地点</th>
+            <th class="wrap" style="width: 150px;">图片</th>
+            <th class="wrap" style="width: 200px;">介绍</th>
+            <th class="wrap" style="width: 70px;">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="artifact,artifactStat:${alist}">
+            <td>
+                <input type="checkbox" th:id="'ids_'+${artifact.artname}" th:value="${artifact.artname}" name="names">
+            </td>
+            <td class="wrap" th:text="${artifact.artname}" th:title="${artifact.artname}"></td>
+            <td class="wrap" th:text="${artifact.dynasty}" th:title="${artifact.dynasty}"></td>
+            <td class="wrap" th:text="${artifact.type}" th:title="${artifact.type}"></td>
+            <td class="wrap" th:text="${artifact.place}" th:title="${artifact.place}"></td>
+            <td class="wrap" th:text="${artifact.time}" th:title="${artifact.time}"></td>
+            <td class="wrap" th:text="${artifact.collected}" th:title="${artifact.collected}"></td>
+            <td class="artifact-image-container">
+                <img class="artifact-image" th:src="${artifact.image}" alt="Artifact Image" style="width: 150px; height: 150px">
+            </td>
+            <td class="wrap" th:text="${artifact.introduction}" th:title="${artifact.introduction}"></td>
+            <td>
+                <a th:href="@{'/artifact/toupdate/' + ${artifact.artname}}">编辑</a>
+                <a th:href="@{'/artifact/deletebyname/' + ${artifact.artname}}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+</body>
+</html>

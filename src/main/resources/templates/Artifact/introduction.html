@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="referrer" content="no-referrer" /><!--img标签预加载网络图片-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文物介绍</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+        }
+        body{
+            min-width: 100%;
+            background-color: rgb(65,28,47);
+            text-rendering: optimizeLegibility;
+        }
+        .title{
+            font-size: 30px;
+        }
+        .introduction{
+            margin-top: 100px;
+            width: 1200px;
+            height: 682px;
+            background-color: rgb(236,236,236);
+            padding-top: 70px;
+            margin: 0 auto;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .year{
+            font-size: 20px;
+            color:rgb(157,61,64);
+            border-bottom: 3px solid rgb(157,61,64);
+        }
+        .mes p{
+            font-size: 12px;
+        }
+        .mes{
+            float: right;
+
+        }
+        .introduction .left{
+            width:27.5rem ;
+            height: 18.5rem;
+            margin-bottom: 2rem;
+
+            margin: 20px;
+        }
+        .left img{
+            width:27.5rem ;
+            height: 18.5rem;
+            margin-bottom: 2rem;
+            margin-right: 20px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .text{
+            width: 650px;
+            height: 300px;
+            margin-top: 40px;
+            text-align: justify;text-justify:inter-ideograph;
+            padding: 10px;
+            border-radius: 10px;
+            text-indent:2em;/*首行缩进*/
+        }
+        .right{
+            width: 680px;
+
+        }
+        .back{
+            font-size: 20px;
+            font-family: "华文楷体";
+            color: #fff;
+            width: 80px;
+            text-align: center;
+            line-height: 30px;
+            height: 30px;
+            position: fixed;
+            left: 98%;
+            bottom: 0;
+            transform: translate(-100%);
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="introduction">
+    <div class="left">
+        <img th:src="${artifact.image}" alt="">
+    </div>
+    <dl class="right">
+        <dt>
+            <div class="title" th:text="${artifact.artname}"></div><!--文物名称-->
+            <div class="year" th:text="${artifact.dynasty}"></div><!--朝代-->
+            <div class="mes"><!--出土时间，地点，现藏地点-->
+                <p th:text="${artifact.time}"></p>
+                <p th:text="${artifact.place}"></p>
+                <p th:text="${artifact.collected}"></p>
+            </div>
+        </dt>
+        <dd>
+            <div class="text" th:text="${artifact.introduction}" style="word-wrap:break-word;"></div>
+        </dd>
+    </dl>
+</div>
+<a th:href="@{/guest/artifact/index}" class="back">返回首页</a>
+</body>
+</html>

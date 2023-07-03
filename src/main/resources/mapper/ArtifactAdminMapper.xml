@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.museum.mapper.ArtifactMapper">
+    <select id="findAllArtifacts" resultType="com.museum.pojo.Artifact">
+        select *
+        from artifact
+    </select>
+
+    <insert id="insertArtifact" parameterType="com.museum.pojo.Artifact">
+        insert into artifact(artname, dynasty, type, place, time, collected, image, introduction)
+        values(#{artname}, #{dynasty}, #{type}, #{place}, #{time}, #{collected}, #{image}, #{introduction})
+    </insert>
+
+    <select id="findArtifactByName" resultType="com.museum.pojo.Artifact">
+        select *
+        from artifact
+        where artname = #{artname}
+    </select>
+
+    <delete id="deleteArtifactByName" parameterType="java.lang.String">
+        delete from artifact
+        where artname = #{artname}
+    </delete>
+
+    <update id="updateArtifact" parameterType="com.museum.pojo.Artifact">
+        update artifact
+        set dynasty = #{dynasty}, type = #{type}, place = #{place}, time = #{time}, collected = #{collected}, image = #{image}, introduction = #{introduction}
+        where artname = #{artname}
+    </update>
+
+    <select id="findArtifactByStr" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+        select *
+        from artifact
+        where 1=1
+        <if test="searchStr1 != null and searchStr1 != ''">
+            and artname like CONCAT('%', #{searchParam}, '%')
+            or dynasty like CONCAT('%', #{searchParam}, '%')
+            or type like CONCAT('%', #{searchParam}, '%')
+            or place like CONCAT('%', #{searchParam}, '%')
+            or time like CONCAT('%', #{searchParam}, '%')
+            or collected like CONCAT('%', #{searchParam}, '%')
+            or introduction like CONCAT('%', #{searchParam}, '%')
+        </if>
+    </select>
+
+    <select id="findByType" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+    select *
+    from artifact
+    where type = #{type}
+</select>
+<select id="findByType2" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+<select id="findByType3" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+<select id="findByType4" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+<select id="findByType5" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+<select id="findByType6" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+<select id="findByType7" parameterType="java.lang.String" resultType="com.museum.pojo.Artifact">
+select *
+from artifact
+where type = #{type}
+</select>
+</mapper>

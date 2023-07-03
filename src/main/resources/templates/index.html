@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="referrer" content="no-referrer" /><!--img标签预加载网络图片-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+<header><!--页面顶部-->
+
+    <div id="menu-bar" class="fa-solid fa-ellipsis-vertical"></div>
+    <a href="#" class="logo">文博追韵</a>
+    <nav class="navbar"><!-- nav是导航栏部分的标签 -->
+        <a th:href="@{/guest/artifact/index}">首页</a>
+        <a th:href="@{/guest/artifact/toshow}">馆藏文物</a>
+        <a th:href="@{/guest/news/findall}">资讯</a>
+        <a th:href="@{/guest/artifact/toexhibition}">展览</a>
+    </nav>
+
+    <a th:href="@{/checkLogin/tologin}" class="denglu"><div class="login"></div></a>
+</header>
+
+<div class="box">
+    <ul class="items">
+        <li class="item one active">
+            <img th:src="@{/images/1.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+        <li class="item two">
+            <img th:src="@{/images/2.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+        <li class="item three">
+            <img th:src="@{/images/3.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+        <li class="item four">
+            <img th:src="@{/images/4.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+        <li class="item five">
+            <img th:src="@{/images/5.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+        <li class="item six">
+            <img th:src="@{/images/6.jpg}" alt="" class="img">
+            <div class="mask"></div>
+        </li>
+    </ul>
+    <div class="left-arror arror">
+        <i class="fa-solid fa-angle-left"></i>
+    </div>
+    <div class="right-arror arror">
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <ul class="dots">
+    </ul>
+</div>
+
+<div class="museum">
+    <div class="card" id="card-1">
+        <div class="imgBox">
+            <img th:src="@{/images/card-1.jpg}">
+        </div>
+        <div class="details">
+            <h2>国家一级博物馆</h2>
+            <p>故宫博物院</p>
+            <p>天津博物馆</p>
+            <p>上海博物馆</p>
+            <p>浙江省博物馆</p>
+            <p>河南省博物馆</p>
+            <p>......</p>
+            <a th:href="@{/guest/museum/museumlist}">查看更多</a>
+        </div>
+    </div>
+    <div class="card" id="card-2">
+        <div class="imgBox">
+            <img th:src="@{/images/card-2.jpg}">
+        </div>
+        <div class="details">
+            <h2>国家二级博物馆</h2>
+            <p>北京南海子麋鹿苑博物馆</p>
+            <p>中国传媒大学传媒博物馆</p>
+            <p>阳泉市博物馆</p>
+            <p>上海大学博物馆</p>
+            <p>庐山会议旧址博物馆</p>
+            <p>......</p>
+            <a th:href="@{/guest/museum/museumlist2}">查看更多</a>
+        </div>
+    </div>
+    <div class="card" id="card-3">
+        <div class="imgBox">
+            <img th:src="@{/images/card-3.jpg}">
+        </div>
+        <div class="details">
+            <h2>国家三级博物馆</h2>
+            <p>中华世纪坛艺术博物馆</p>
+            <p>民航博物馆</p>
+            <p>萧红故居纪念馆</p>
+            <p>中国书法文化博物馆</p>
+            <p>孙中山纪念馆</p>
+            <p>......</p>
+            <a th:href="@{/guest/museum/museumlist3}">查看更多</a>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="footer-container">
+        <div class="footer_left-col">
+            <h1>文博追韵</h1>
+        </div>
+    </div>
+</footer>
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

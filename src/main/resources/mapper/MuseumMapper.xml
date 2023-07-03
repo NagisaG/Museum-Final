@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.museum.mapper.MuseumMapper">
+    <select id="findAllMuseums" resultType="com.museum.pojo.Museum">
+        select *
+        from museum
+ </select>
+    <select id="findMuseumByProvince" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="province!=null and province!=''">
+            and province like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <select id="findMuseumByName" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="museum_name!=null and museum_name!=''">
+            and museum_name like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <select id="findMuseumByLevel" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="level!=null and level!=''">
+            and level like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <select id="findMuseumByType" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="type!=null and type!=''">
+            and type like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <select id="findMuseumByIsfree" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="isfree!=null and isfree!=''">
+            and isfree like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <select id="findMuseumByStr" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select * from museum where 1=1
+        <if test="searchStr!=null and searchStr!=''">
+            and isfree like CONCAT('%',#{searchParam},'%')
+            or museum_name like CONCAT('%',#{searchParam},'%')
+            or level like CONCAT('%',#{searchParam},'%')
+            or type like CONCAT('%',#{searchParam},'%')
+            or province like CONCAT('%',#{searchParam},'%')
+        </if>
+    </select>
+    <insert id="insertMuseum" parameterType="com.museum.pojo.Museum">
+        insert into museum(province,museum_name,level,type,isfree)
+        values (#{province},#{museum_name},#{level},#{type},#{isfree})
+    </insert>
+    <delete id="deleteMuseumByName" parameterType="java.lang.String">
+        delete from museum where museum_name=#{museum_name}
+    </delete>
+    <update id="updateMuseum" parameterType="com.museum.pojo.Museum">
+        update museum
+        set province=#{province},museum_name=#{museum_name},level=#{level},type=#{type},isfree=#{isfree}
+        where museum_name=#{museum_name}
+    </update>
+
+
+    <select id="findByLevel" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select *
+        from museum
+        where level = #{level}
+    </select>
+    <select id="findByLevel2" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select *
+        from museum
+        where level = #{level}
+    </select>
+    <select id="findByLevel3" parameterType="java.lang.String" resultType="com.museum.pojo.Museum">
+        select *
+        from museum
+        where level = #{level}
+    </select>
+</mapper>

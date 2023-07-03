@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" /><!--img标签预加载网络图片-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 连接到css  -->
+    <link rel="stylesheet" th:href="@{/css/both.css}">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/js/artifact.js}"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-image:url(/images/user.png) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .messageList {
+            padding: 20px;
+
+        }
+        .controller {
+            padding-bottom: 20px;
+            margin-left: 100px;
+            display: block;
+            justify-content: flex-end;
+        }
+        #search {
+            margin-left: 10px;
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #submit {
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+            position: absolute;
+            right: 280px;
+        }
+        #file {
+            position: absolute;
+            right: 240px;
+        }
+        .search {
+            position: absolute;
+            right: 20px;
+        }
+        .wrap {
+            /* text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap; */
+            max-width: 150px;
+            word-wrap:break-word;
+        }
+        .upload {
+            position: absolute;
+            right: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- 侧边栏  -->
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>后台系统</header>
+    <ul>
+        <li><a href="/index"><i class="fa-solid fa-house"></i>首页</a></li>
+        <li><a href="/museum/findall"><i class="fa-solid fa-vihara"></i>博物馆信息</a></li>
+        <li><a href="/artifact/findall"><i class="fa-sharp fa-solid fa-eye"></i>文物信息</a></li>
+        <li><a href="/admin/findall"><i class="fa-sharp fa-solid fa-user-secret"></i>用户信息</a></li>
+        <li><a href="/news/findall"><i class="fa-solid fa-newspaper"></i>相关资讯</a></li>
+    </ul>
+</div>
+
+<!-- 表单 -->
+<!--<button onclick="deleteArtifacts()">批量删除</button>-->
+<!--<form id="artifactsform" action="/artifact/delete" method="post">-->
+<div class="messageList">
+    <div class="controller">
+        <form action="/news/findbystr" method="post" class="search">
+            <input type="text" id="searchStr" name="searchStr" placeholder="输入关键字进行查询">
+            <input type="submit" value="查询" id="search" class="btn">
+        </form>
+        <form action="/news/upload" method="post" enctype="multipart/form-data" class="upload">
+            <input type="file" id="file" name="file">
+            <input type="submit" value="上传" class="btn" id="submit">
+        </form>
+    </div>
+    <table class="table table-striped" style="table-layout:fixed;margin-top: 40px;">
+        <thead>
+        <tr>
+            <th class="wrap">标题</th>
+            <th class="wrap">内容</th>
+            <th class="wrap">地址</th>
+            <th class="wrap">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="news,newsStat:${nlist}">
+            <td class="wrap" th:text="${news.title}"></td>
+            <td class="wrap" th:text="${news.content}"></td>
+            <td class="wrap" th:text="${news.address}"></td>
+            <td>
+                <a th:href="@{'/news/deletebytitle/' + ${news.title}}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

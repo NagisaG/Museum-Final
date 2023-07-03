@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博物馆列表</title>
+
+    <style>
+        h1{
+            text-align: center;
+
+            background-color: rgb(236,236,236);
+        }
+        table{
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%);
+            text-align: center;
+            border: 1px solid;
+            border-radius: 10px;
+            background-color: rgb(236,236,236);
+        }
+
+        table th{
+            color: black;
+            line-height: 30px;
+            width:15%;
+        }
+
+        table td{
+            font-size: 14px;
+            line-height: 30px;
+            word-wrap:break-word;
+            max-width: 150px;
+        }
+        .back{
+            font-size: 20px;
+            font-family: "华文楷体";
+            color: black;
+            width: 80px;
+            text-align: center;
+            line-height: 30px;
+            height: 30px;
+            position: fixed;
+            bottom: 0;
+            left: 90%;
+            text-decoration: none;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>博物馆信息</h1>
+<form >
+    <table>
+        <tr>
+            <th>省份</th>
+            <th>博物馆名称</th>
+            <th>级别</th>
+            <th>类型</th>
+            <th>是否免费</th>
+        </tr>
+        <tbody>
+        <tr th:each="museum : ${mlist}">
+            <td th:text="${museum.province}"></td>
+            <td th:text="${museum.museum_name}"></td>
+            <td th:text="${museum.level}"></td>
+            <td th:text="${museum.type}"></td>
+            <td th:text="${museum.isfree}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/guest/artifact/index}" class="back">返回首页</a>
+</form>
+</body>
+</html>

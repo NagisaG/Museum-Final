@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta name="referrer" content="no-referrer" /><!--img标签预加载网络图片-->
+<head>
+    <meta charset="UTF-8">
+    <title>文物列表</title>
+    <style>
+        .main .content{
+            /* 不设置这个容器的大小，让它随flex撑开 */
+            /* 1.设置为flex布局 */
+            display: flex;
+            /* 2.一行放不下，自动换行 */
+            flex-wrap: wrap;
+            /* 在主轴方向上————space-between */
+            justify-content: space-between;
+        }
+        .main .content .card {
+            /* 给card设置背景颜色为全白 */
+            background-color: #fff;
+            /* 使图片和文字为上下关系并垂直居中对齐，所以使用flex布局 */
+            display: flex;
+            /* 设置主轴方向为垂直 */
+            flex-direction: column;
+            /* 在与主轴方向垂直的方向,设置为居中,使文字在图片下方正中央 */
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 5px;
+            background-color: #fff;
+            border: .1rem solid rgba(0,0,0,.1);
+            border-radius: .5rem;
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+            width: 280px;
+            height: 280px;
+            margin:10px;
+            float: left;
+        }
+        a{
+            /* 给card设置背景颜色为全白 */
+            background-color: #fff;
+            /* 使图片和文字为上下关系并垂直居中对齐，所以使用flex布局 */
+            display: flex;
+            /* 设置主轴方向为垂直 */
+            flex-direction: column;
+            /* 在与主轴方向垂直的方向,设置为居中,使文字在图片下方正中央 */
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 5px;
+            background-color: #fff;
+            border: .1rem solid rgba(0,0,0,.1);
+            border-radius: .5rem;
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+            width: 280px;
+            height: 280px;
+            margin:10px;
+            float: left;
+        }
+        .main .content .card img{
+            width:27.5rem ;
+            height: 18.5rem;
+            margin-bottom: 2rem;
+            max-height: 60%;
+            max-width: 80%;
+        }
+        .main .content .card span{
+            font-size: 10px;
+            color: #000;
+            text-align: center;
+        }
+        .back{
+            font-size: 20px;
+            font-family: "华文楷体";
+            color: black;
+            width: 80px;
+            text-align: center;
+            line-height: 30px;
+            height: 30px;
+            position: fixed;
+            left: 98%;
+            bottom: 0;
+            transform: translate(-100%);
+            text-decoration: none;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+<section class="main" id="main">
+    <div class="content">
+        <div th:each="artifact,artifactStat: ${alist}" class="card">
+            <a th:href="@{/guest/artifact/showIntroduction/{artname}(artname=${artifact.artname})}">
+                <img th:src="${artifact.image}" alt=""/>
+                <span th:text="${artifact.artname}"></span>
+                <p th:text="${artifact.time}"></p>
+            </a>
+        </div>
+    </div>
+</section>
+<a th:href="@{/guest/artifact/index}" class="back">返回首页</a>
+</body>
+</html>

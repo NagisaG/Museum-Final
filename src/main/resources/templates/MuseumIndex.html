@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 连接到css  -->
+    <link rel="stylesheet" th:href="@{/css/both.css}">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <title>后台管理系统</title>
+    <style>
+        body {
+            background-image:url(/images/user.png) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .messageList {
+            padding: 20px;
+
+        }
+        .controller {
+            padding-bottom: 20px;
+            margin-left: 100px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        #add {
+            margin-right: 1em;
+            background-color: rgba(143, 154, 146, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #search {
+            margin-left: 1em;
+            background-color: rgba(99, 137, 107, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #search1 {
+            background-color: rgba(99, 137, 107, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #search2 {
+            background-color: rgba(99, 137, 107, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        #search3 {
+            background-color: rgba(99, 137, 107, 0.474);
+            border-color: rgba(99, 137, 107, 0.474);
+            border-radius: 5px;
+        }
+        .wrap {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 150px;
+        }
+        .tablelist {
+            display: flex;
+        }
+        #level {
+            width: 70px;
+            margin-left: 450px;
+        }
+        #type {
+            width: 160px;
+            margin-left: 10px;
+        }
+        #isfree {
+            width: 70px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<!-- 侧边栏  -->
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>后台管理系统</header>
+    <ul>
+        <li><a href="/index"><i class="fa-solid fa-house"></i>首页</a></li>
+        <li><a href="/museum/findall"><i class="fa-solid fa-vihara"></i>博物馆信息</a></li>
+        <li><a href="/artifact/findall"><i class="fa-sharp fa-solid fa-eye"></i>文物信息</a></li>
+        <li><a href="/admin/findall"><i class="fa-sharp fa-solid fa-user-secret"></i>用户信息</a></li>
+        <li><a href="/news/findall"><i class="fa-solid fa-newspaper"></i>相关资讯</a></li>
+        <li><a href="/guest/museum/index"><i class="fa-solid fa-arrow-right"></i>游客页面</a></li>
+    </ul>
+</div>
+
+<!-- 表单 -->
+<div class="messageList">
+    <div class="controller">
+        <a href="/museum/toinsert"><button id="add" class="btn">添加信息</button></a>
+        <form action="/museum/findbystr" method="post">
+            <input type="text" id="searchStr" name="searchStr" placeholder="输入关键字进行查询">
+            <input type="submit" value="查询" id="search" class="btn">
+        </form>
+    </div>
+    <!-- 新增 -->
+    <div class="tablelist">
+        <form action="/museum/findbylevel" method="post">
+            <input list="nlist" type="text" id="level" name="level" placeholder="级别">
+            <datalist id="nlist">
+                <option>一级</option>
+                <option>二级</option>
+                <option>三级</option>
+            </datalist>
+            <input type="submit" value="查询" id="search1" class="btn2">
+        </form>
+        <form action="/museum/findbytype" method="post">
+            <input list="tlist" type="text" id="type" name="type" placeholder="类型">
+            <datalist id="tlist">
+                <option>文物系统国有博物馆</option>
+                <option>其他行业国有博物馆</option>
+                <option>非国有博物馆</option>
+            </datalist>
+            <input type="submit" value="查询" id="search2" class="btn2">
+        </form>
+        <form action="/museum/findbyisfree" method="post">
+            <input list="ilist" type="text" id="isfree" name="isfree" placeholder="免费">
+            <datalist id="ilist">
+                <option>是</option>
+                <option>否</option>
+            </datalist>
+            <input type="submit" value="查询" id="search3" class="btn2">
+        </form>
+    </div>
+    <!-- 新增 -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th class="wrap">省份</th>
+            <th class="wrap">博物馆名称</th>
+            <th class="wrap">级别</th>
+            <th class="wrap">类型</th>
+            <th class="wrap">是否免费</th>
+            <th class="wrap">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="museum,museumStat:${mlist}">
+            <td class="wrap" th:text="${museum.province}" th:title="${museum.province}"></td>
+            <td class="wrap" th:text="${museum.museum_name}" th:title="${museum.museum_name}"></td>
+            <td class="wrap" th:text="${museum.level}"></td>
+            <td class="wrap" th:text="${museum.type}"></td>
+            <td class="wrap" th:text="${museum.isfree}"></td>
+            <td>
+                <a th:href="@{'/museum/toupdate/'+${museum.museum_name}}" >编辑</a >
+                <a th:href="@{'/museum/deletebyname/'+${museum.museum_name}}">删除</a >
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资讯</title>
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/consult.css}">
+</head>
+
+<body>
+<header><!--页面顶部-->
+
+    <div id="menu-bar" class="fa-solid fa-ellipsis-vertical"></div>
+    <a href="#" class="logo">文博追韵</a>
+    <nav class="navbar"><!-- nav是导航栏部分的标签 -->
+        <a th:href="@{/guest/artifact/index}">首页</a>
+        <a th:href="@{/guest/artifact/toshow}">馆藏文物</a>
+        <a th:href="@{/guest/news/findall}">资讯</a>
+        <a th:href="@{/guest/artifact/toexhibition}">展览</a>
+    </nav>
+    <a th:href="@{/checkLogin/tologin}" class="denglu"><div class="login"></div></a>
+</header>
+<h2>
+    <span>文</span><span>物</span><span>新</span><span>闻</span>
+</h2>
+<div class="detail" th:each="news,newsStat:${nlist}">
+    <div class="title">
+        <a th:href="@{/guest/news/showNews/{title}(title=${news.title})}" class="neirong">
+            <p th:text="${news.title}"></p>
+        </a>
+    </div>
+</div>
+
+<footer>
+
+    <div class="footer-container">
+        <div class="footer_left-col">
+            <h1>文博追韵</h1>
+        </div>
+    </div>
+
+</footer>
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

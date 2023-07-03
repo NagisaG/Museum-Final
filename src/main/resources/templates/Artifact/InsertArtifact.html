@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
+    <title>添加信息</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-family: "montserrat";
+        }
+        body{
+            background-image:url(/images/bk5.jpg) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .card{
+            width: 360px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: rgba(255, 255, 255, 0.3);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            padding: 20px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+        }
+        form {
+            margin-left: 40px;
+        }
+        .card button {
+            margin-left: 300px;
+        }
+        .btn {
+            background-color: rgb(113, 112, 105);
+            border: none;
+            font-size: 15px;
+            font-weight: normal;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            box-shadow: 0 3px #bbb;
+            border-radius: 10px;
+            margin-left: 60px;
+        }
+        .btn:hover{
+            background-color: rgb(79, 84, 84);
+        }
+        .btn:active{
+            background-color: rgb(52, 62, 62);
+            box-shadow: 0 2px #aaa;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>添加文物信息</h2>
+    <form action="/artifact/insert" methon="post">
+
+        请输入文物名称:<input id="artname" name="artname" type="text"><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入时代:<input id="dynasty" name="dynasty" type="text"><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入类型:<input id="type" list="tlist" name="type" type="text"><br><br>
+        <datalist id="tlist">
+            <option>其他</option>
+            <option>陶瓷器</option>
+            <option>玉器</option>
+            <option>竹简</option>
+            <option>金银器</option>
+            <option>漆木器</option>
+            <option>青铜器</option>
+        </datalist>
+        请输入出土地点:<input id="place" name="place" type="text"><br><br>
+        请输入出土时间:<input id="time" name="time" type="text"><br><br>
+        请输入现藏地点:<input id="collected" name="collected" type="text"><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入图片:<input id="image" name="image" type="text"><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入介绍:<input id="introduction" name="introduction" type="text"><br><br>
+        <input class="btn" type="submit" value="确认">
+        <input class="btn" type="reset" value="重置">
+    </form>
+    <button class="btn" name="button" onclick="history.back()">返回</button>
+
+</div>
+
+</body>
+</html>

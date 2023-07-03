@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" th:href="@{/css/both.css}">
+    <script th:src="@{/js/echarts.min.js}"></script>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/vintage.js}"></script>
+    <script th:src="@{/js/infographic.js}"></script>
+    <script th:src="@{/js/macarons.js}"></script>
+    <script th:src="@{/js/wonderland.js}"></script>
+    <script th:src="@{/js/roma.js}"></script>
+    <script src="https://kit.fontawesome.com/c1cc272ea4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+    <!-- 如果你没有相应的js文件，用下面的语句代替即可：
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/4.6.0/echarts.min.js"></script>
+	 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .view {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            align-content: center;
+            width: 100%;
+            height: 600px;
+            background-image:url(/images/user.png) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .view2 {
+
+            width: 20%;
+            height: 600px;
+            margin-left: 10px;
+        }
+
+        .inner {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgb(160, 160, 160);
+            border-radius: 10px;
+        }
+        #ctr1 {
+            width: 70%;
+            height: 90%;
+            margin-top: 20px;
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+        #ctr2 {
+            width: 100%;
+            height: 27%;
+            margin-top: 30px;
+        }
+        #ctr3 {
+            width: 100%;
+            height: 27%;
+            margin-top: 22px;
+        }
+        #ctr4 {
+            width: 100%;
+            height: 27%;
+            margin-top: 22px;
+        }
+        label #btn{
+            left: 0px;
+            top: 0px;
+            font-size: 35px;
+            color: white;
+            padding: 1px 2px;
+            transition: all .5s;
+        }
+    </style>
+</head>
+<body>
+<!-- 侧边栏  -->
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fa-regular fa-bookmark" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="sidebar">
+    <header>后台管理系统</header>
+    <ul>
+        <li><a href="/index"><i class="fa-solid fa-house"></i>首页</a></li>
+        <li><a href="/museum/findall"><i class="fa-solid fa-vihara"></i>博物馆信息</a></li>
+        <li><a href="/artifact/findall"><i class="fa-sharp fa-solid fa-eye"></i>文物信息</a></li>
+        <li><a href="/admin/findall"><i class="fa-sharp fa-solid fa-user-secret"></i>用户信息</a></li>
+        <li><a href="/news/findall"><i class="fa-solid fa-newspaper"></i>相关资讯</a></li>
+        <li><a href="/guest/museum/index"><i class="fa-solid fa-arrow-right"></i>游客页面</a></li>
+    </ul>
+</div>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+
+<div class="view">
+    <div class="inner" id="ctr1"></div>
+    <div class="view2">
+        <div class="inner" id="ctr2"></div>
+        <div class="inner" id="ctr3"></div>
+        <div class="inner" id="ctr4"></div>
+    </div>
+</div>
+
+<script type="text/javascript" th:inline="javascript">
+    window.onload = function () {
+        echart01();
+        echart02();
+        echart03();
+        echart04();
+        function echart01() {
+            var data1=[[${data1Json}]];
+            var data2=[[${data2Json}]];
+            var myChart = echarts.init(document.getElementById('ctr1'),'infographic');
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '博物馆信息统计',
+                    x:'center'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['数量'],
+                    left: 'left'
+                },
+                xAxis: {
+                    // data: ['一级', '二级', '三级']
+                    data: JSON.parse(data1),
+                    axisLabel: {
+                        show: true, // 是否显示刻度标签，默认显示
+                        interval: 0, // 坐标轴刻度标签的显示间隔，在类目轴中有效；默认会采用标签不重叠的策略间隔显示标签；可以设置成0强制显示所有标签；如果设置为1，表示『隔一个标签显示一个标签』，如果值为2，表示隔两个标签显示一个标签，以此类推。
+                        rotate: -60, // 刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠；旋转的角度从-90度到90度
+                        inside: false, // 刻度标签是否朝内，默认朝外
+                        margin: 6, // 刻度标签与轴线之间的距离
+                        formatter: '{value}' , // 刻度标签的内容格式器
+                    }
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '数量',
+                        type: 'bar',
+                        // data: [100, 30, 45]
+                        data: JSON.parse(data2)
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function echart02() {
+            var data1=[[${data3Json}]];
+            var data2=[[${data4Json}]];
+            var myChart = echarts.init(document.getElementById('ctr2'),'macarons');
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '文物类型统计',
+                    textStyle: {
+                        fontSize: 10,
+                    },
+                    x:'center'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['数量'],
+                    left: 'left'
+                },
+                xAxis: {
+                    // data: ['一级', '二级', '三级']
+                    data: JSON.parse(data1),
+                    axisLabel: {
+                        show: true, // 是否显示刻度标签，默认显示
+                        interval: 0, // 坐标轴刻度标签的显示间隔，在类目轴中有效；默认会采用标签不重叠的策略间隔显示标签；可以设置成0强制显示所有标签；如果设置为1，表示『隔一个标签显示一个标签』，如果值为2，表示隔两个标签显示一个标签，以此类推。
+                        rotate: -60, // 刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠；旋转的角度从-90度到90度
+                        inside: false, // 刻度标签是否朝内，默认朝外
+                        margin: 6, // 刻度标签与轴线之间的距离
+                        formatter: '{value}' , // 刻度标签的内容格式器
+                    }
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '数量',
+                        type: 'bar',
+                        // data: [100, 30, 45]
+                        data: JSON.parse(data2)
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function echart03() {
+            var data1=[[${data5Json}]];
+            var data2=[[${data6Json}]];
+            var myChart = echarts.init(document.getElementById('ctr3'),'wonderland');
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '博物馆级别统计',
+                    textStyle: {
+                        fontSize: 10,
+                    },
+                    x:'center'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['数量'],
+                    left: 'left'
+                },
+                xAxis: {
+                    // data: ['一级', '二级', '三级']
+                    data: JSON.parse(data1),
+                    axisLabel: {
+                        show: true, // 是否显示刻度标签，默认显示
+                        interval: 0, // 坐标轴刻度标签的显示间隔，在类目轴中有效；默认会采用标签不重叠的策略间隔显示标签；可以设置成0强制显示所有标签；如果设置为1，表示『隔一个标签显示一个标签』，如果值为2，表示隔两个标签显示一个标签，以此类推。
+                        rotate: -60, // 刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠；旋转的角度从-90度到90度
+                        inside: false, // 刻度标签是否朝内，默认朝外
+                        margin: 6, // 刻度标签与轴线之间的距离
+                        formatter: '{value}' , // 刻度标签的内容格式器
+                    }
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '数量',
+                        type: 'bar',
+                        // data: [100, 30, 45]
+                        data: JSON.parse(data2)
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+        function echart04() {
+            var data1=[[${data7Json}]];
+            var data2=[[${data8Json}]];
+            var myChart = echarts.init(document.getElementById('ctr4'),'roma');
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '博物馆类型统计',
+                    textStyle: {
+                        fontSize: 10,
+                    },
+                    x:'center'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['数量'],
+                    left: 'left'
+                },
+                xAxis: {
+                    // data: ['一级', '二级', '三级']
+                    data: JSON.parse(data1),
+                    axisLabel: {
+                        show: true, // 是否显示刻度标签，默认显示
+                        interval: 0, // 坐标轴刻度标签的显示间隔，在类目轴中有效；默认会采用标签不重叠的策略间隔显示标签；可以设置成0强制显示所有标签；如果设置为1，表示『隔一个标签显示一个标签』，如果值为2，表示隔两个标签显示一个标签，以此类推。
+                        rotate: -60, // 刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠；旋转的角度从-90度到90度
+                        inside: false, // 刻度标签是否朝内，默认朝外
+                        margin: 6, // 刻度标签与轴线之间的距离
+                        formatter: '{value}' , // 刻度标签的内容格式器
+                    }
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '数量',
+                        type: 'bar',
+                        // data: [100, 30, 45]
+                        data: JSON.parse(data2)
+                    }
+                ]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+    }
+</script>
+</body>
+</html>

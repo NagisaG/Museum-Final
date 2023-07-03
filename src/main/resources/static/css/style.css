@@ -1,0 +1,323 @@
+/* 总体样式设计 */
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    outline: none; border:none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* 改变被选中文本的颜色 */
+*::selection{
+    background:red;
+    color:#fff;
+}
+.heading{
+    text-align: center;
+    padding:2.5rem 0;
+}
+
+.heading span{
+    font-size: 3.5rem;
+    background:rgba(255, 165, 0,.2);
+    color:orange;
+    border-radius: .5rem;
+    padding:.2rem 1rem;
+}
+
+.heading span.space{
+    background:none;
+}
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    /* 如果内容溢出了元素内容区域，对内容的左右边缘进行裁剪 */
+}
+
+header{
+
+    position: fixed;
+    top:0; left: 0; right:0;
+    background:rgb(113,27,40);
+    z-index: 1000;
+    /* 设置导航栏模块元素层级最高，以免被其他内容覆盖 */
+    display: flex;
+    /* flex布局 */
+    align-items: center;
+    /* 在交叉轴上居中对齐 */
+    justify-content: space-between;
+    /* 间距相等排列，两边留白等于间距的一半 */
+    padding:2rem 9%;
+}
+
+header .logo{
+    font-size: 40px;
+    font-weight: bolder;
+    color:#fff;
+    font-family: "华文行楷";
+
+}
+
+/*header .logo span{*/
+/*    color:red;*/
+/*}*/
+
+header .navbar a{
+    color:#fff;
+    font-size: 2rem;
+    margin:0 .8rem;
+}
+header .navbar a:hover{
+    color: #c91212;
+}
+header .icons i{
+    font-size: 2.5rem;
+    color:#fff;
+    cursor: pointer;
+    /* 改变指针样式 */
+    margin-right: 2rem;
+}
+
+header .icons i:hover{
+    color:red;
+}
+
+header .search-bar-container{
+    position: absolute;
+    /* 绝对定位 */
+    top:100%; left: 0; right:0;
+    padding:1.5rem 2rem;
+    background:#333;
+    border-top: .1rem solid rgba(255,255,255,.2);
+    /* 上边框为白色实线 */
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    /* 未选中时，设置该区域不可见 */
+
+}
+
+header .search-bar-container.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    /* 选中再显示出来 */
+}
+
+header .search-bar-container #search-bar{
+    width:100%;
+    padding:1rem;
+    color:#333;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+}
+
+header .search-bar-container label{
+    color:#fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+.search-box{
+    position: absolute;
+    /* top: 50%; */
+    left: 90%;
+    background: #2f3640;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+}
+.search-btn{
+    color: #e84118;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+#search-btn{
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.search-txt{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0;
+}
+.search-box:hover > .search-txt
+{
+    width: 240px;
+    padding:0 6px;
+}
+.search-box:hover > .search-btn
+{
+    background: white;
+}
+/* 设置按钮样式 */
+.btn{
+    margin-top: 1rem;
+    background:red;
+    color:#fff;
+    padding:.8rem 3rem;
+    border:.2rem solid red;
+    cursor: pointer;
+    /* 改变元素内光标样式 */
+    font-size: 1.7rem;
+}
+
+/* 按钮被选中后的效果 */
+.btn:hover{
+    background:rgba(255, 165, 0,.2);
+    color:red;
+}
+
+#menu-bar{
+    color:#fff;
+    border:.1rem solid #fff;
+    border-radius: .5rem;
+    font-size: 3rem;
+    padding:.5rem 1.2rem;
+    cursor: pointer;
+    display: none;
+}
+
+footer{
+    position: absolute;
+    left: 0; right:0;
+    background:rgb(113,27,40);
+    z-index: 9999;
+    display: flex;
+    top: 100%;
+
+}
+
+.footer-container{
+    margin: auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+
+.footer_logo{
+    width: 400px;
+}
+.footer_left-col{
+    float: left;
+}
+.footer_left-col h1{
+    font-size: 40px;
+    color: #fdfdfe;
+    font-family: "华文行楷";
+}
+.footer_btn:hover{
+    opacity: .7;
+}
+.footer_right-col{
+    float: right;
+}
+/* 屏幕宽度小于等于1200px时，将HTML根元素的字体大小设置为55% */
+@media (max-width:1200px){
+
+    html{
+        font-size: 55%;
+    }
+
+}
+
+/* 屏幕宽度小于等于991px时，将头部和内容区域的内边距设置为2rem */
+@media (max-width:991px){
+
+    header{
+        padding:2rem;
+    }
+
+    section{
+        padding:2rem;
+    }
+
+}
+
+/* 屏幕宽度小于等于768px时，将菜单栏显示出来 */
+@media (max-width:768px){
+
+    #menu-bar{
+        display: initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top:100%; right:0; left: 0;
+        background: #333;
+        border-top: .1rem solid rgba(255,255,255,.2);
+        padding:1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .navbar a{
+        display: block;
+        border-radius: .5rem;
+        padding:1.5rem;
+        margin:1.5rem 0;
+        background:#222;
+    }
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+    .heading span{
+        font-size: 2.5rem;
+    }
+
+    .contact .row form .inputBox input{
+        width:100%;
+    }
+
+    @media screen and (max-width:960px) {
+        .footer-container{
+            max-width: 600px;
+        }
+        .footer_right-col{
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer_left-col{
+            width: 100%;
+            margin-bottom: 60px;
+        }
+    }
+
+}
+.denglu{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    transition: .5s;
+    background: url("/static/images/login.jpg");
+
+    z-index: 99999;
+    background-size: 50px;
+}
+
+.denglu:hover{
+    transform: scale(1.05);
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改图书</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-family: "montserrat";
+        }
+        body{
+            background-image:url(/static/images/bk5.jpg) ;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* background-size: 100%; */
+            background-size:cover;
+            background-position: center;
+        }
+        .card{
+            width: 360px;
+            height: 310px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background: rgba(255, 255, 255, 0.3);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            padding: 20px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+        }
+        form {
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+        .card button {
+            margin-left: 300px;
+        }
+        .btn {
+            background-color: rgb(125, 114, 18);
+            border: none;
+            font-size: 15px;
+            font-weight: normal;
+            color: white;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 8px;
+            box-shadow: 0 3px #bbb;
+            border-radius: 10px;
+            margin-left: 60px;
+            margin-top: 10px;
+        }
+        .btn:hover{
+            background-color: rgb(79, 84, 84);
+        }
+        .btn:active{
+            background-color: rgb(52, 62, 62);
+            box-shadow: 0 2px #aaa;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>修改用户信息</h2>
+    <form action="/admin/update" method="post">
+        <input id="id" name="id" type="hidden" th:value="${admin.username}">
+        请输入用户名称:<input id="username" name="username" type="text" th:value="${admin.username}"><br><br>
+        请输入用户密码:<input id="password" name="password" type="text" th:value="${admin.password}"><br><br>
+        请输入用户等级:<input id="permission" name="permission" type="text" th:value="${admin.permission}"><br><br>
+<!--        请输入用户等级:<input type="text" list="clist" id="permission" name="permission" th:selected="${admin.permission}><br><br>-->
+<!--        <datalist id="clist">-->
+<!--            <option>一级</option>-->
+<!--            <option>二级</option>-->
+<!--        </datalist>-->
+        <input class="btn" type="submit" value="确认">
+        <input class="btn" type="reset" value="重置">
+    </form>
+    <button class="btn" name="button" onclick="history.back()">返回</button>
+
+</div>
+</body>
+</html>

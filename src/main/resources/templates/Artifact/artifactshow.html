@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>馆藏文物</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/artifact.css}">
+    <link rel="stylesheet" th:href="@{/css/consult.css}">
+    <script th:src="@{/static/js/index.js}"></script>
+    <script th:src="@{/static/js/script.js}"></script>
+</head>
+<body>
+<header><!--页面顶部-->
+
+    <div id="menu-bar" class="fa-solid fa-ellipsis-vertical"></div>
+    <a href="#" class="logo">文博追韵</a>
+    <nav class="navbar"><!-- nav是导航栏部分的标签 -->
+        <a th:href="@{/guest/artifact/index}">首页</a>
+        <a th:href="@{/guest/artifact/toshow}">馆藏文物</a>
+        <a th:href="@{/guest/news/findall}">资讯</a>
+        <a th:href="@{/guest/artifact/toexhibition}">展览</a>
+    </nav>
+    <!--    <div class="search-box">-->
+    <!--        <input  class="search-txt" type="text" name="" placeholder="Type to search">-->
+    <!--        <a href="" class="search-btn">-->
+    <!--            <i class="fa-sharp fa-solid fa-magnifying-glass" id="search-btn"></i>-->
+    <!--        </a>-->
+    <!--    </div>-->
+    <a th:href="@{/checkLogin/tologin}" class="denglu"><div class="login"></div></a>
+</header>
+
+<div class="card" id="art-1">
+    <div class="photo"><img th:src="@{/images/青铜器.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow'}">
+        <div class="art-name">
+            青铜器
+        </div>
+    </a>
+</div>
+<div class="card" id="art-2">
+    <div class="photo"><img th:src="@{/images/漆木器.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow2'}">
+        <div class="art-name">
+            漆木器
+        </div>
+    </a>
+</div>
+<div class="card" id="art-3">
+    <div class="photo"><img th:src="@{/images/金银器.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow3'}">
+        <div class="art-name">
+            金银器
+        </div>
+    </a>
+</div>
+<div class="card" id="art-4">
+    <div class="photo"><img th:src="@{/images/竹简.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow4'}">
+        <div class="art-name">
+            竹简
+        </div>
+    </a>
+</div>
+<div class="card" id="art-5">
+    <div class="photo"><img th:src="@{/images/玉器.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow5'}">
+        <div class="art-name">
+            玉器
+        </div>
+    </a>
+</div>
+<div class="card" id="art-6">
+    <div class="photo"><img th:src="@{/images/陶瓷器.png}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow6'}">
+        <div class="art-name">
+            陶瓷器
+        </div>
+    </a>
+</div>
+<div class="card" id="art-7">
+    <div class="photo"><img th:src="@{/images/其它.jpg}" alt=""></div>
+    <a th:href="@{'/guest/artifact/artifactshow7'}">
+        <div class="art-name">
+            其它
+        </div>
+    </a>
+</div>
+<footer>
+
+    <div class="footer-container">
+        <div class="footer_left-col">
+            <h1>数字博物馆</h1>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>
